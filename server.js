@@ -13,6 +13,7 @@ const knexConfig  = require("./knexfile");
 const knex        = require("knex")(knexConfig[ENV]);
 const morgan      = require('morgan');
 const knexLogger  = require('knex-logger');
+const eventRoutes = require('./routes/events');
 
 // Seperated Routes for each Resource
 const usersRoutes = require("./routes/users");
@@ -38,7 +39,8 @@ app.use(express.static("public"));
 // Mount all resource routes
 app.use("/api/users", usersRoutes(knex));
 
-// Home page
+app.use("/events", eventRoutes(knex))
+
 app.get("/", (req, res) => {
   res.render("index");
 });
