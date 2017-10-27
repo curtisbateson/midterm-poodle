@@ -2,57 +2,61 @@
 
 const express       = require('express');
 const router        = express.Router();
-const generateId    = require('../public/scripts/app.js')
-const cookie        = require('cookie-parser')
+const generateId    = require('../public/scripts/generateID.js')
+const session       = require('cookie-session')
 const app           = express();
-
-app.use(cookie())
 
 module.exports = (knex) => {
 
-    router.get("/", (req, res) => {
-        res.render("create")
-    });
+  router.get("/", (req, res) => {
+    res.render("create")
+  });
 
-    router.post("/", (req, res) => {
-        let eventDescription = req.body.event_description;
-        let eventTitle = req.body.event_title;
-        let longId = generateId();
+  router.post("/", (req, res) => {
+    let longId = generateId();
 
-        res.cookie("eventCookie", eventDescription) 
-        res.cookie("titleCookie", eventTitle)
-        res.cookie("longIdCookie", longId)
+    req.session.event_description = req.body.event_description;
+    req.session.eventTitle = req.body.event_title;
+    req.session.longId = longId
 
-        res.redirect("/events/" + longId + "/dates")
+    res.redirect("/events/" + longId + "/dates")        
+  })                    
         
-        
-    })
-    
-    router.get("/:id/dates", (req, res) => {
-    
-        res.render("dates")
+  router.get("/:id/dates", (req, res) => {
+    req.session.dates = {
+      dateOne : {
+          timeOne: "8:00",
+          timeTwo: "9:00",
+          TimeThree: "10:00"
+      },
+      dateTwo : {
+          timeOne: "8:00",
+          timeTwo: "9:00",
+          TimeThree: "10:00"
+      }
+    }
+    res.render("dates")    
+  })
 
+  router.post("/:id/dates", (req, res) => {  
+    res.redirect("/:id/owner")
+  })
 
-    })
+  router.get("/:id/owner", (req, res) => {
+    res.render("owner")
+  })
 
-    router.post("/:id/dates", (req, res) => {
+  router.post("/:id/owner", (req, res) => {
+    insertObj.name = req.body.name
+    insertObj.email = req.body.email
+    res.redirect("/:id")
+  })
 
-    })
+  router.get("/:id", (req, res) => {
+  })
 
-    router.get("/:id/owner", (req, res) => {
+  router.post("/:id", (req, res) => {
+  })
 
-    })
-
-    router.post("/:id/owner", (req, res) => {
-
-    })
-
-    router.get("/:id", (req, res) => {
-    })
-
-    router.post("/:id", (req, res) => {
-
-    })
-
-    return router;
+  return router;
 }

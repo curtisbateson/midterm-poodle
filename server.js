@@ -14,10 +14,15 @@ const knex        = require("knex")(knexConfig[ENV]);
 const morgan      = require('morgan');
 const knexLogger  = require('knex-logger');
 const eventRoutes = require('./routes/events');
-
+const session       = require('cookie-session')
 
 app.use(morgan('dev'));
 app.use(knexLogger(knex));
+
+app.use(session({
+    name: 'session',
+    keys: ["curtisbeard"]
+  }));
 
 app.set("view engine", "ejs");
 app.use(bodyParser.urlencoded({ extended: true }));
