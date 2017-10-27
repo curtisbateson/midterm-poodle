@@ -42,7 +42,7 @@ app.use("/api/users", usersRoutes(knex));
 app.use("/events", eventRoutes(knex))
 
 app.get("/", (req, res) => {
-  res.render("index");
+  res.render("home");
 });
 
 app.listen(PORT, () => {
