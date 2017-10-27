@@ -22,6 +22,10 @@ pre, code, code span {
 	-webkit-text-shadow: none !important;
 }
 
+#toggle.center {
+ position: float left;
+}
+
 #wrapper {
 	padding-bottom: 40px;
 }
