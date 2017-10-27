@@ -1,22 +1,37 @@
 "use strict";
 
-const express = require('express');
-const router = express.Router();
+const express       = require('express');
+const router        = express.Router();
+const generateId    = require('../public/scripts/app.js')
+const cookie        = require('cookie-parser')
+const app           = express();
+
+app.use(cookie())
 
 module.exports = (knex) => {
 
-    router.get("/create", (req, res) => {
-        res.render("eventCreation")
-        res.send("1")
+    router.get("/", (req, res) => {
+        res.render("create")
     });
 
-    router.post("/create", (req, res) => {
-        res.redirect("/:id/dates")
-        res.send("2")
-    })
+    router.post("/", (req, res) => {
+        let eventDescription = req.body.event_description;
+        let eventTitle = req.body.event_title;
+        let longId = generateId();
 
+        res.cookie("eventCookie", eventDescription) 
+        res.cookie("titleCookie", eventTitle)
+        res.cookie("longIdCookie", longId)
+
+        res.redirect("/events/" + longId + "/dates")
+        
+        
+    })
+    
     router.get("/:id/dates", (req, res) => {
-         res.send("1")
+    
+        res.render("dates")
+
 
     })
 
@@ -33,7 +48,6 @@ module.exports = (knex) => {
     })
 
     router.get("/:id", (req, res) => {
-        res.send("GET IT")
     })
 
     router.post("/:id", (req, res) => {
