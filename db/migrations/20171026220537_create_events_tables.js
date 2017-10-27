@@ -6,24 +6,24 @@ exports.up = function(knex, Promise) {
         table.string('email');
     }).createTable('events', function (table) {
         table.increments('id').primary();
-        table.integer('organizer_id').references('id').inTable('organizers');
+        table.integer('organizer_id').references('id').inTable('organizers').onDelete('CASCADE');
         table.string('long_identifier');
         table.string('title');
         table.string('description');
     }).createTable('attendees', function (table) {
         table.increments('id').primary();
-        table.integer('event_id').references('id').inTable('events');
+        table.integer('event_id').references('id').inTable('events').onDelete('CASCADE');
         table.string('name');
         table.string('email');
     }).createTable('schedule_options', function (table) {
         table.increments('id').primary();
-        table.integer('event_id').references('id').inTable('events');
+        table.integer('event_id').references('id').inTable('events').onDelete('CASCADE');
         table.date('date');
         table.time('time');
     }).createTable('selected_options', function (table) {
         table.unique(['schedule_option_id', 'attendee_id']);
-        table.integer('schedule_option_id').references('id').inTable('schedule_options');
-        table.integer('attendee_id').references('id').inTable('attendees');
+        table.integer('schedule_option_id').references('id').inTable('schedule_options').onDelete('CASCADE');
+        table.integer('attendee_id').references('id').inTable('attendees').onDelete('CASCADE');
     });
   };
   
