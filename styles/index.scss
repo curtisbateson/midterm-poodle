@@ -1,0 +1,35 @@
+$primary-font: 'Lobster', cursive;
+$secondary-font: 'Roboto Condensed', sans-serif;
+
+.jumbotron {
+    background-color: #FF4B9B;
+    font: 100% $primary-font;
+    height: 160px;
+    margin: 0;
+    padding: 20px 32px;
+
+    h1 {
+        left: 10px;
+        position: relative;
+        top: 30px;
+    }
+
+    img {
+        border-radius: 10px;
+        float: left;
+        height: 100px;
+        margin: 10px;
+        top: -100px;
+    }
+}
+
+
+
+content {
+    font: 100% $secondary-font;
+    margin: 50px;
+    
+    a.align-middle {
+        margin: 100px;
+    }
+}
