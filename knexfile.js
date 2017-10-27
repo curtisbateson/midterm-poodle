@@ -34,3 +34,4 @@ module.exports = {
   }
 
 };
+console.log(module.exports.development)

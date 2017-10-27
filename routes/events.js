@@ -19,17 +19,17 @@ module.exports = (knex) => {
         let eventTitle = req.body.event_title;
         let longId = generateId();
 
-        res.cookie("eventCookie", eventDescription) 
-        res.cookie("titleCookie", eventTitle)
-        res.cookie("longIdCookie", longId)
-
+        let cookieObj = {
+        eventCookie: res.cookie("eventCookie", eventDescription),
+        titleCookie: res.cookie("titleCookie", eventTitle),
+        longIdCookie:res.cookie("longIdCookie", longId)
+        };
         res.redirect("/events/" + longId + "/dates")
-        
-        
     })
     
     router.get("/:id/dates", (req, res) => {
-    
+
+        console.log(cookieObj.eventCookie);
         res.render("dates")
 
 
