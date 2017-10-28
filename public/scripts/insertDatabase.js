@@ -30,6 +30,7 @@ module.exports = function insertDatabase(session, knex) {
           });
         } 
         return Promise.all(datesArr);
+        console.log(datesArr)
       })
   })
 };
