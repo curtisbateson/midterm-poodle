@@ -32,7 +32,7 @@ app.use(express.static("public"));
 app.use("/events", eventRoutes(knex))
 
 app.get("/", (req, res) => {
-  res.render("home");
+  res.render("index");
 });
 
 app.listen(PORT, () => {
