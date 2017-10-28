@@ -3,6 +3,7 @@ $secondary-font: 'Roboto Condensed', sans-serif;
 
 #header.jumbotron {
     background-color: #FF4B9B;
+    border-radius: 0;
     height: 160px;
     margin: 0;
     padding: 20px 32px;
@@ -33,4 +34,19 @@ content {
     a.align-middle {
         margin: 100px;
     }
+}
+
+container {
+    content {
+        margin-bottom: 10px;
+        margin-top: 0;
+
+        p {
+            width: 50%;
+        }
+    }
+}
+
+#options {
+    width: 50%;
 }
