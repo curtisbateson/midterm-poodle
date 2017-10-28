@@ -15,7 +15,20 @@
 <body>
   <% include partials/_header %>
   <content class="row justify-content-center">
-    <a href="/events" class="btn-lg btn-danger align-middle">Create Event</a>
+    <form class='form' method='POST' action='/events'>
+      <h2>Name your Poodle</h2>
+      <p class='form-group'>
+        <label>Title</label>
+        <input class='form-control' type='text' name='title'/>
+      </p>
+      <p class='form-group'>
+        <label>Description</label>
+        <input class='form-control' type='text' name='description'/>
+      </p>
+      <p>
+        <button class='btn btn-danger' type='submit'>Name that Poodle!</button>
+      </p>
+    </form>
   </content>
 </body>
 </html>
