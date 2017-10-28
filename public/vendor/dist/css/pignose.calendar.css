@@ -89,12 +89,13 @@
   opacity: .7;
 }
 .pignose-calendar {
+  position: left;
   width: 80%;
   max-width: 360px;
   background-color: #ffffff;
   border: 1px solid #d8d8d8;
   font-size: 100%;
-  margin: 0 auto;
+/*   margin: 0 auto; */
   box-shadow: 0 3px 8px rgba(0, 0, 0, 0.25);
 }
 .pignose-calendar .pignose-calendar-top {
@@ -267,127 +268,12 @@
   color: #fa4832;
 }
 .pignose-calendar.pignose-calendar-default .pignose-calendar-body .pignose-calendar-row .pignose-calendar-unit.pignose-calendar-unit-toggle-active a {
-  color: #cccccc !important;
+  background-color: #2fabb7;
+  color: #ffffff !important;
+  font-weight: 600;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, .5);
 }
+
 .pignose-calendar.pignose-calendar-default.pignose-calendar-reverse .pignose-calendar-body .pignose-calendar-row .pignose-calendar-unit.pignose-calendar-unit-toggle-inactive a {
   color: #cccccc !important;
-}
-.pignose-calendar.pignose-calendar-dark {
-  border-color: #323537;
-  background-color: #4b4f51;
-  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.5);
-}
-.pignose-calendar.pignose-calendar-dark .pignose-calendar-top {
-  background-color: #3f4244;
-  border-bottom-color: #323537;
-  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.175);
-}
-.pignose-calendar.pignose-calendar-dark .pignose-calendar-top .pignose-calendar-top-month {
-  color: #ffffff;
-}
-.pignose-calendar.pignose-calendar-dark .pignose-calendar-top .pignose-calendar-top-year {
-  color: #bdc2c5;
-}
-.pignose-calendar.pignose-calendar-dark .pignose-calendar-top .pignose-calendar-top-nav .pignose-calendar-top-value {
-  color: #a2a9ab;
-}
-.pignose-calendar.pignose-calendar-dark .pignose-calendar-top .pignose-calendar-top-nav .pignose-calendar-top-icon {
-  color: #a2a9ab;
-}
-.pignose-calendar.pignose-calendar-dark .pignose-calendar-header .pignose-calendar-week {
-  color: #bdc2c5;
-}
-.pignose-calendar.pignose-calendar-dark .pignose-calendar-header.pignose-calendar-week-sun,
-.pignose-calendar.pignose-calendar-dark .pignose-calendar-header.pignose-calendar-week-sat {
-  color: #ff6060;
-}
-.pignose-calendar.pignose-calendar-dark .pignose-calendar-body .pignose-calendar-row .pignose-calendar-unit a {
-  color: #51cfd2;
-}
-.pignose-calendar.pignose-calendar-dark .pignose-calendar-body .pignose-calendar-row .pignose-calendar-unit.pignose-calendar-unit-sun a,
-.pignose-calendar.pignose-calendar-dark .pignose-calendar-body .pignose-calendar-row .pignose-calendar-unit.pignose-calendar-unit-sat a {
-  color: #ff6060;
-}
-.pignose-calendar.pignose-calendar-dark .pignose-calendar-body .pignose-calendar-row .pignose-calendar-unit.pignose-calendar-unit-disabled a {
-  color: #868e8f;
-  background-color: #5d6365;
-}
-.pignose-calendar.pignose-calendar-dark .pignose-calendar-body .pignose-calendar-row .pignose-calendar-unit.pignose-calendar-unit-active a {
-  color: #ffffff;
-  background-color: #31bbbf;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.75);
-}
-.pignose-calendar.pignose-calendar-dark .pignose-calendar-body .pignose-calendar-row .pignose-calendar-unit.pignose-calendar-unit-toggle a {
-  color: #8b8f94;
-}
-.pignose-calendar.pignose-calendar-dark .pignose-calendar-body .pignose-calendar-row .pignose-calendar-unit.pignose-calendar-unit-range a {
-  background-color: #5a5d62;
-}
-.pignose-calendar.pignose-calendar-dark .pignose-calendar-body .pignose-calendar-row .pignose-calendar-unit.pignose-calendar-unit-range.pignose-calendar-unit-disabled a {
-  color: #727a7c;
-  background-color: #4f5558;
-}
-.pignose-calendar.pignose-calendar-dark .pignose-calendar-button-group {
-  border-top: 1px solid #323537;
-  overflow: hidden;
-}
-.pignose-calendar.pignose-calendar-dark .pignose-calendar-button-group .pignose-calendar-button {
-  color: #ffffff;
-}
-.pignose-calendar.pignose-calendar-dark .pignose-calendar-button-group .pignose-calendar-button:hover {
-  background-color: #5a5d62;
-}
-.pignose-calendar.pignose-calendar-dark .pignose-calendar-button-group .pignose-calendar-button-apply {
-  color: #ffffff;
-  background-color: #31bbbf;
-}
-.pignose-calendar.pignose-calendar-blue {
-  background-color: #fafafa;
-}
-.pignose-calendar.pignose-calendar-blue .pignose-calendar-top {
-  background-color: #009fe3;
-  border-bottom-color: #e1e1e1;
-}
-.pignose-calendar.pignose-calendar-blue .pignose-calendar-top .pignose-calendar-top-month {
-  color: #ffffff;
-}
-.pignose-calendar.pignose-calendar-blue .pignose-calendar-top .pignose-calendar-top-year {
-  color: #ffffff;
-}
-.pignose-calendar.pignose-calendar-blue .pignose-calendar-top .pignose-calendar-top-nav .pignose-calendar-top-value {
-  color: #ffffff;
-}
-.pignose-calendar.pignose-calendar-blue .pignose-calendar-top .pignose-calendar-top-nav .pignose-calendar-top-icon {
-  color: #ffffff;
-}
-.pignose-calendar.pignose-calendar-blue .pignose-calendar-header .pignose-calendar-week {
-  color: #5c6270;
-}
-.pignose-calendar.pignose-calendar-blue .pignose-calendar-header .pignose-calendar-week.pignose-calendar-week-sun,
-.pignose-calendar.pignose-calendar-blue .pignose-calendar-header .pignose-calendar-week.pignose-calendar-week-sat {
-  color: #fa4832;
-}
-.pignose-calendar.pignose-calendar-blue .pignose-calendar-body .pignose-calendar-row .pignose-calendar-unit a {
-  color: #5c6270;
-}
-.pignose-calendar.pignose-calendar-blue .pignose-calendar-body .pignose-calendar-row .pignose-calendar-unit.pignose-calendar-unit-sun a,
-.pignose-calendar.pignose-calendar-blue .pignose-calendar-body .pignose-calendar-row .pignose-calendar-unit.pignose-calendar-unit-sat a {
-  color: #fa4832;
-}
-.pignose-calendar.pignose-calendar-blue .pignose-calendar-body .pignose-calendar-row .pignose-calendar-unit.pignose-calendar-unit-disabled a {
-  background-color: #efefef;
-}
-.pignose-calendar.pignose-calendar-blue .pignose-calendar-body .pignose-calendar-row .pignose-calendar-unit.pignose-calendar-unit-active a {
-  color: #ffffff;
-  background-color: #009fe3;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.75);
-}
-.pignose-calendar.pignose-calendar-blue .pignose-calendar-body .pignose-calendar-row .pignose-calendar-unit.pignose-calendar-unit-toggle a {
-  color: #cccccc;
-}
-.pignose-calendar.pignose-calendar-blue .pignose-calendar-body .pignose-calendar-row .pignose-calendar-unit.pignose-calendar-unit-range a {
-  background-color: #efefef;
-}
-.pignose-calendar.pignose-calendar-blue .pignose-calendar-body .pignose-calendar-row .pignose-calendar-unit.pignose-calendar-unit-range.pignose-calendar-unit-disabled a {
-  background-color: #efefef;
 }

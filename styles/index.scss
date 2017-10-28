@@ -1,17 +1,18 @@
 $primary-font: 'Lobster', cursive;
 $secondary-font: 'Roboto Condensed', sans-serif;
 
-.jumbotron {
+#header.jumbotron {
     background-color: #FF4B9B;
-    font: 100% $primary-font;
     height: 160px;
     margin: 0;
     padding: 20px 32px;
 
     h1 {
+        color: white;
+        font: 55px "Lobster", cursive;
         left: 10px;
         position: relative;
-        top: 30px;
+        top: 20px;
     }
 
     img {
