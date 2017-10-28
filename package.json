@@ -24,7 +24,8 @@
     "morgan": "^1.7.0",
     "node-sass-middleware": "^0.9.8",
     "pg": "^6.0.2",
-    "pg-calendar": "^1.4.23"
+    "pg-calendar": "^1.4.23",
+    "timepicker": "^1.11.12"
   },
   "devDependencies": {
     "nodemon": "^1.9.2",
