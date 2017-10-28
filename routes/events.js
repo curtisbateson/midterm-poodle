@@ -16,42 +16,50 @@ module.exports = (knex) => {
   router.post("/", (req, res) => {
     let longId = generateId();
 
-    req.session.event_description = req.body.event_description;
-    req.session.eventTitle = req.body.event_title;
-    req.session.longId = longId
+    req.session.event = {
+    description: req.body.event_description,
+    title: req.body.event_title,
+    longId: longId
+    }
 
-    res.redirect("/events/" + longId + "/dates")        
-  })                    
-        
-  router.get("/:id/dates", (req, res) => {
     req.session.dates = {
       dateOne : {
           timeOne: "8:00",
           timeTwo: "9:00",
           TimeThree: "10:00"
-      },
-      dateTwo : {
+        },
+        dateTwo : {
           timeOne: "8:00",
           timeTwo: "9:00",
           TimeThree: "10:00"
+        }
       }
-    }
+      console.log(req.session)
+
+    res.redirect("/events/" + longId + "/dates")        
+  })                    
+        
+  router.get("/:id/dates", (req, res) => {
     res.render("dates")  
-    console.log(getEvent('gregilimikecurtis1', knex))
+ 
     
   })
   
   router.post("/:id/dates", (req, res) => {  
-    res.redirect("/:id/owner")
+    res.redirect("/:id/organizer")
   })
 
-  router.get("/:id/owner", (req, res) => {
-    res.render("owner")
+  router.get("/:id/organizer", (req, res) => {
+    
+    
+    res.render("organizer")
   })
 
-  router.post("/:id/owner", (req, res) => {
-    req.session.name = req.body.name
-    req.session.email = req.body.email
+  router.post("/:id/organizer", (req, res) => {
+    req.session.organizer = {
+      name: req.body.name,
+      email: req.body.email
+    }
     res.redirect("/:id")
 
   })

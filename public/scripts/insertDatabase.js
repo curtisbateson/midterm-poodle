@@ -1,24 +1,36 @@
-// const settings = require("../../knexfile.js")
-
-var knex = require('knex')({
-  client: 'postgresql',
-  connection: {
-    host     : "localhost",
-    user     : "labber",
-    password : "labber",
-    database : "midterm",
-    port     : 5432,
-    ssl      : false
-  },
-});
-
-knex.select().from("events").asCallback((err, result) => {
-  if (err){
-    console.log(err)
+module.exports = function insertDatabase(session, knex) {
+  let sessionOrganizer = {
+    name:   session.organizer.name, 
+    email:  session.organizer.email 
   }
-  console.log(result)
-
-  knex.destroy((cb) => {
-    console.log("done")
+  knex.insert([sessionOrganizer]).into("organizers").returning("id")
+  .then(id => {
+    return id[0]
   })
-})
+  .then(organizerId => {
+    let sessionEvent = { 
+      organizer_id:     organizerId, 
+      long_identifier:  session.event.longId, 
+      title:            session.event.title, 
+      description:      session.event.description }
+      
+      knex.insert([sessionEvent]).into("events").returning("id")
+      .then(id => {
+        console.log("testing "+id);
+        let datesArr = []
+        for (let date in session.dates) {
+         knex('schedule_options').insert({
+            event_id: Number(id),
+            date: session.dates[date].day,
+            time: session.dates[date].time
+          })
+          .returning('id')
+          .then((id) => {
+              console.log(id);
+          });
+        } 
+        return Promise.all(datesArr);
+      })
+  })
+};
+
