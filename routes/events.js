@@ -11,7 +11,7 @@ app.use(cookie())
 module.exports = (knex) => {
 
     router.get("/", (req, res) => {
-        res.render("create")
+        res.render("name")
     });
 
     router.post("/", (req, res) => {
