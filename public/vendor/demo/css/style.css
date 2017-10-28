@@ -7,7 +7,7 @@ html, body {
 	font-size: 16px;
 }
 
-html, body, span, p, div, h1, h2, h3, h4, h5, h6, a, ul, ol, li, th, td, dt, dl, dd, b, strong, i {
+html, body, span, p, div, h2, h3, h4, h5, h6, a, ul, ol, li, th, td, dt, dl, dd, b, strong, i {
 	font-family: 'Raleway', 'Open Sans', 'helvetica', 'sans-serif';
 }
 
@@ -48,7 +48,7 @@ pre, code, code span {
 	color: #333333;
 }
 
-.header .version {
+.version {
 	margin: 20px auto 0;
 	margin-top: 20px;
 	padding-top: 20px;
