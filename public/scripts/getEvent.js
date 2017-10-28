@@ -45,7 +45,6 @@ module.exports = function getEvent(longId, knex) {
 };
 
 
-// getEvent('gregilimikecurtis1')
 
 
 
