@@ -5,6 +5,7 @@ const router        = express.Router();
 const generateId    = require('../public/scripts/generateID.js')
 const session       = require('cookie-session')
 const app           = express();
+const getEvent     = require('../public/scripts/getEvent.js')
 
 module.exports = (knex) => {
 
@@ -35,9 +36,11 @@ module.exports = (knex) => {
           TimeThree: "10:00"
       }
     }
-    res.render("dates")    
+    res.render("dates")  
+    console.log(getEvent('gregilimikecurtis1', knex))
+    
   })
-
+  
   router.post("/:id/dates", (req, res) => {  
     res.redirect("/:id/owner")
   })
@@ -47,9 +50,10 @@ module.exports = (knex) => {
   })
 
   router.post("/:id/owner", (req, res) => {
-    insertObj.name = req.body.name
-    insertObj.email = req.body.email
+    req.session.name = req.body.name
+    req.session.email = req.body.email
     res.redirect("/:id")
+
   })
 
   router.get("/:id", (req, res) => {

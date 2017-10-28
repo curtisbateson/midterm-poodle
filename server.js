@@ -8,7 +8,7 @@ const express     = require("express");
 const bodyParser  = require("body-parser");
 const sass        = require("node-sass-middleware");
 const app         = express();
-
+const session     = require('cookie-session')
 const knexConfig  = require("./knexfile");
 const knex        = require("knex")(knexConfig[ENV]);
 const morgan      = require('morgan');
@@ -18,6 +18,10 @@ const eventRoutes = require('./routes/events');
 
 app.use(morgan('dev'));
 app.use(knexLogger(knex));
+app.use(session({
+  name: 'session',
+  keys: ["curtisbeard"]
+}));
 
 app.set("view engine", "ejs");
 app.use(bodyParser.urlencoded({ extended: true }));
