@@ -7,6 +7,28 @@ const session       = require('cookie-session')
 const app           = express();
 const getEvent     = require('../public/scripts/getEvent.js')
 
+var testEvent = {
+    event: {
+        description: "This is my Poodle. There are many like it, but this one is mine. Four score and seventeen Poodles ago I have a dream that Poodles and Poodles can live together in harmony. Rule #1: Don't talk about Poodle Club. Rule #2: Don't talk about Poodle Club.",
+        title: "Poodle Event Title",
+        longId: "jn3iun3r"
+    },
+    options: {
+        option1 : {
+            date: "2017-11-01",
+            time: "6:00"
+        },
+        option2 : {
+            date: "2017-11-02",
+            time: "6:00"
+        }
+    },
+    organizer: {
+        name: "Poodler",
+        email: "poodler@example.com"
+    }
+}
+
 module.exports = (knex) => {
 
   router.get("/", (req, res) => {
@@ -65,6 +87,7 @@ module.exports = (knex) => {
   })
 
   router.get("/:id", (req, res) => {
+      res.render("event", testEvent);
   })
 
   router.post("/:id", (req, res) => {
