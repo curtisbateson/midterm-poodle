@@ -48,5 +48,23 @@ container {
 }
 
 #options {
-    width: 50%;
+    .table {
+        width: 50%;
+
+        img {
+            height: 100px;
+        }
+    }
+
+    row {
+        margin: 0;
+
+        colu {
+            padding: 10px;
+        }
+
+        img {
+            height: 100px;
+        }
+    }
 }
