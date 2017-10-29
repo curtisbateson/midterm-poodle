@@ -14,7 +14,13 @@ const knex        = require("knex")(knexConfig[ENV]);
 const morgan      = require('morgan');
 const knexLogger  = require('knex-logger');
 const eventRoutes = require('./routes/events');
+const flash       = require('connect-flash');
+// const exSession     = require('express-session');
 
+// app.use(exSession({
+//   secret: 'anystringoftext',
+//   saveUninitialized: true,
+//   resave: true}));
 
 app.use(morgan('dev'));
 app.use(knexLogger(knex));
@@ -34,6 +40,8 @@ app.use("/styles", sass({
 app.use(express.static("public"));
 
 app.use("/events", eventRoutes(knex))
+
+// app.use(flash());
 
 app.get("/", (req, res) => {
   res.render("index");

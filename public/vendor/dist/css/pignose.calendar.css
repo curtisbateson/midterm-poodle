@@ -23,7 +23,7 @@
 }
 .pignose-calendar-wrapper {
   display: none;
-  position: fixed;
+  /* position: fixed; */
   width: 80%;
   max-width: 360px;
   top: 50%;

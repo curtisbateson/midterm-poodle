@@ -109,16 +109,16 @@
 
         $()
 
-        $('.timepicker').timepicker({
-            timeFormat: 'h:mm p',
-            interval: 30,
-            minTime: '12am',
-            maxTime: '11:30pm',
-            defaultTime: '10am',
-            dynamic: false,
-            dropdown: true,
-            scrollbar: false 
-        });
+        // $('.timepicker').timepicker({
+        //     timeFormat: 'h:mm p',
+        //     interval: 30,
+        //     minTime: '12am',
+        //     maxTime: '11:30pm',
+        //     defaultTime: '10am',
+        //     dynamic: false,
+        //     dropdown: true,
+        //     scrollbar: false 
+        // });
         
 
         // Toggle type Calendar
@@ -126,17 +126,13 @@
             toggle: true,
 
             select: function (date, context) {
-                var message = `You selected ${(date[0] === null ? 'null' : date[0].format('YYYY-MM-DD'))}.
+                var message = `
              <br />
-             <br />
-            
-            <h2 class="datesPicked">These are the dates & times you picked:</h2>
-             <br />
-             <br />
+            <h2 class="datesPicked">
+                These are the dates & times you picked:</h2>
+
              <div class="active-dates"></div>`;
                 var $target = context.calendar.parent().next().show().html(message);
-
-                
 
                 for (var idx in context.storage.activeDates) {
                     var date = context.storage.activeDates[idx];
@@ -156,7 +152,7 @@
                         dropdown: true,
                         scrollbar: false 
                     }).appendTo($form);
-
+                
                 }
             }
         });
@@ -223,43 +219,36 @@
 
 
 <div id="toggle Center" class="article">
-        <div class="toggle-calendar"></div>
-    
-    <!-- <div id="toggle" class="article"></div> -->
-<!-- <div id="wrapper">
-  <div id="toggle Center" class="article">
-  <div class="toggle-calendar"></div>
-</div> -->
-
-
-<section class="datesPicked">
-<div class="active-dates">
+<div class="row">
+    <div class="col-sm">
+      <div class="toggle-calendar"></div>
+    </div>
+    <div class="col-sm">
+      <!-- <div class="toggle-calendar"></div> -->
+      <section class="datesPicked">
+        <div class="active-dates"></div>
+      </section>     
+    </div>
+</div>
 </div>
 
-<form><input class="timepicker"></form>
-<!-- 
-<form action="/:id/dates" method="POST">
-</form> -->
-</section>
 
+<!-- <div id="toggle Center" class="article">
+    <div class="toggle-calendar"></div>
+        <section class="datesPicked">
+                <div class="active-dates">
+                </div>
+        </section> -->
 
-
-<!-- ///////////////////// -->
-
-
-
-
-
-
+<text-align: right>
 <form class='form' method='POST' action='/events/:id/dates'>
     <p><button class='btn btn-danger' type='submit'>Confirm those Poodle times!</button></p>
 </form>
-<!-- ////////////////// -->
+</text-align:>
+
+    
+</div>
 
 
- 
-  </div>
-
-  
 </body>
 </html>
