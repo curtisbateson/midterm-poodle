@@ -7,9 +7,9 @@ html, body {
 	font-size: 16px;
 }
 
-html, body, span, p, div, h2, h3, h4, h5, h6, a, ul, ol, li, th, td, dt, dl, dd, b, strong, i {
+/* html, body, span, p, div, h2, h3, h4, h5, h6, a, ul, ol, li, th, td, dt, dl, dd, b, strong, i {
 	font-family: 'Raleway', 'Open Sans', 'helvetica', 'sans-serif';
-}
+} */
 
 h1, h2, h3, h4, h5, h6 {
 	font-weight: 400;
