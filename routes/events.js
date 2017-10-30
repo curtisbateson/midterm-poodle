@@ -39,33 +39,14 @@ module.exports = (knex) => {
 
   router.post("/", (req, res) => {
     let longId = generateId();
-<<<<<<< HEAD
-    let title = req.body.title;
-    let description = req.body.description;
-    console.log(title);
-=======
->>>>>>> 4fff11ffb2f9ab40bb57afbd9cdc0492d91119ce
     req.session.event = {
       description: req.body.description,
       title: req.body.title,
       longId: longId
     }
-<<<<<<< HEAD
-    console.log("before if!")
-    if (!title || !description) {
-      console.log("no title")
-      res.status(400)
-      res.send("please input a title.")
-    } else {
-      console.log("in the else");
-      res.redirect("/events/" + longId + "/dates") 
-    }   
- });                    
-=======
   
      res.redirect("/events/" + longId + "/dates")        
   })                    
->>>>>>> 4fff11ffb2f9ab40bb57afbd9cdc0492d91119ce
         
   router.get("/:id/dates", (req, res) => {
     res.render("dates")  
