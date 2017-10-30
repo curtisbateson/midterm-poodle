@@ -15,6 +15,13 @@ module.exports = (knex) => {
     res.render("name")
   });
   
+
+  router.post("/option", (req, res) => {
+    req.session.buttonSelections.push(req.body.button)
+    res.sendStatus(200);
+
+  })
+ 
   router.post("/", (req, res) => {
     let longId = generateId();
     req.session.event = {
@@ -62,13 +69,29 @@ module.exports = (knex) => {
   })
 
   router.get("/:id", (req, res) => {
-    let id = req.session.event.longId
-    getEvent(id, knex).then(data => { 
-      res.render("event", data)})
+    let id = req.params.id
+    req.session.buttonSelections = [];
+
+    getEvent(id, knex).then(snowball => {
+      req.session.longId = snowball.event.long_identifier
+      req.session.current_event = snowball.event.id 
+      res.render("event", snowball)
+    })
   })
 
   router.post("/:id", (req, res) => {
+    let id = req.session.longId
+    var attendee = {
+      schedule_options: req.session.buttonSelections,
+      event_id: req.session.current_event,
+      email: req.body.email,
+      name: req.body.name
+    }
+    addAttendee(attendee, knex).then(data => {
+      res.redirect("/events/" + id)
+    })
   })
-
+  
+  
   return router;
 }

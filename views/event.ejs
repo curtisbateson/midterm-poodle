@@ -8,7 +8,7 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lobster|Roboto+Condensed">
   <link rel="stylesheet" href="/styles/index.css">
-  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+  <script src="/vendor/jquery-3.0.0.js" type="text/javascript"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
   <script src="/scripts/app.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
@@ -32,7 +32,7 @@
               <tr>
                 <th scope="col"></th>
                 <% for (var option in schedule_options) { %>
-                  <th scope="col"><%= `${schedule_options[option].date} / ${schedule_options[option].time}` %></th>
+                  <th scope="col"><%= `${schedule_options[option].date.slice(0, 10)} / ${schedule_options[option].time.slice(0, 5)}` %></th>
                 <% } %>
               </tr>
             </thead>
@@ -40,18 +40,19 @@
               <% for (var attendee in attendees) { %>
                 <tr>
                   <th>
-                    <p>Attendee Name/Email</p>
+                    <p><%= `${attendees[attendee].name}`%> <br/> <%= `${attendees[attendee].email}`%> </p>
                   </th>
                   <% for (var option in schedule_options) { %>
                     <% var active = false; %>
-                    <% for (var select in selected) { %>
-                      <% if (selected[select].attendee === attendees[attendee] && schedule_options[option].id === selected[select].option) { %>
+                    <% for (var select in selected_options) { %>
+                      <% if (selected_options[select].attendee_id === attendees[attendee].id && schedule_options[option].id === selected_options[select].schedule_option_id) { %>
                         <% active = true; %>
                       <% } %>
                     <% } %>
+                    <% console.log() %>
                     <% if (active) { %>
                       <td>
-                        <button type="button" class="btn btn-danger active" data-toggle="button" aria-pressed="false" autocomplete="off">
+                        <button type="button" class="btn btn-danger active" data-toggle="button" aria-pressed="true" autocomplete="off">
                           Poodle
                         </button>
                       </td>
@@ -77,7 +78,7 @@
                 </th>
                   <% for (var option in schedule_options) { %>
                     <td>
-                      <button type="button" class="btn btn-danger" data-toggle="button" aria-pressed="false" autocomplete="off">
+                      <button type="button" class="btn btn-danger new-user" data-toggle="button" aria-pressed="false" autocomplete="off" data-option= <%= schedule_options[option].id %>>
                         Poodle
                       </button>
                     </td>
@@ -88,7 +89,7 @@
       </div>
     </content>
     <p class="row justify-content-center">
-      <button class='btn btn-danger' type='submit'>Confirm those Poodle selections!</button>
+      <button class='btn btn-danger' type='submit'>Confirm Your Selections!</button>
     </form>
     </p>
   </container>

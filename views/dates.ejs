@@ -17,8 +17,6 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ"
         crossorigin="anonymous"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/timepicker/1.3.5/jquery.timepicker.min.js"></script>
-
-
     <link rel="stylesheet" type="text/css" href="/vendor/demo/css/semantic.ui.min.css">
     <link rel="stylesheet" type="text/css" href="/vendor/demo/css/prism.css" />
     <link rel="stylesheet" type="text/css" href="/vendor/demo/css/calendar-style.css" />
@@ -26,10 +24,8 @@
     <link rel="stylesheet" type="text/css" href="/vendor/dist/css/pignose.calendar.css" />
 
     </style>
-
     <!-- TIMEPICKER -->
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/timepicker/1.3.5/jquery.timepicker.min.css">
-
     <!-- App JS -->
     <script type="text/javascript" src="/scripts/datetime.js"></script>
 
@@ -39,9 +35,6 @@
     <script type="text/javascript" src="/vendor/demo/js/prism.min.js"></script>
     <script type="text/javascript" src="/vendor/dist/js/pignose.calendar.js"></script>
     <script type="text/javascript">
-
-
-
         // CALENDAR FUNCTIONS 
         $(function () {
             $('#wrapper .version strong').text('v' + $.fn.pignoseCalendar.ComponentVersion);
@@ -54,30 +47,24 @@
                  * @context.storage.activeDates is all toggled data, If you use toggle type calendar.
                  * @context.storage.events is all events associated to this date
                  */
-
                 var $element = context.element;
                 var $calendar = context.calendar;
                 var $box = $element.siblings('.box').show();
                 var text = 'You selected date ';
-
                 if (date[0] !== null) {
                     text += date[0].format('YYYY-MM-DD');
                 }
-
                 if (date[0] !== null && date[1] !== null) {
                     text += ' ~ ';
                 }
                 else if (date[0] === null && date[1] == null) {
                     text += 'nothing';
                 }
-
                 if (date[1] !== null) {
                     text += date[1].format('YYYY-MM-DD');
                 }
-
                 $box.text(text);
             }
-
             // CHOSE DATES
             function onApplyHandler(date, context) {
                 /**
@@ -88,56 +75,35 @@
                  * @context.storage.activeDatZes is all toggled data, If you use toggle type calendar.
                  * @context.storage.events is all events associated to this date
                  */
-
                 var $element = context.element;
                 var $calendar = context.calendar;
                 var $box = $element.siblings('.box').show();
                 var text = 'You applied date ';
-
                 if (date[0] !== null) {
                     text += date[0].format('YYYY-MM-DD');
                 }
-
                 if (date[0] !== null && date[1] !== null) {
                     text += ' ~ ';
                 }
                 else if (date[0] === null && date[1] == null) {
                     text += 'nothing';
                 }
-
                 if (date[1] !== null) {
                     text += date[1].format('YYYY-MM-DD');
                 }
-
                 $box.text(text);
             }
-
             $()
-
-            $('.timepicker').timepicker({
-                timeFormat: 'h:mm p',
-                interval: 30,
-                minTime: '12am',
-                maxTime: '11:30pm',
-                defaultTime: '10am',
-                dynamic: false,
-                dropdown: true,
-                scrollbar: false
-            });
-
-
             // Toggle type Calendar
             $('.toggle-calendar').pignoseCalendar({
                 toggle: true,
-
                 select: function (date, context) {
                     if (date !== 'string' && date[0] === null) {
                         return;
                     }
 
                     var $activeDates = $('.active-dates');
-                    $activeDates.append('<span class="ui label default">' + date + '</span>');
-
+                    $activeDates.append('<span class="ui label default">' + date[0].format('YYYY-MM-DD') + '</span>');
                     $('<input type="text" name="times" class="timepicker">').timepicker({
                         timeFormat: 'h:mm p',
                         interval: 30,
@@ -148,62 +114,10 @@
                         dropdown: true,
                         scrollbar: false
                     }).appendTo($activeDates);
-
                     $activeDates.append('<input type="hidden" name="dates" value="' + date + '" />');
                 }
             });
-
-
-            // Disabled date settings.
-            // (function () {
-            //     // IIFE Closure
-            //     var times = 30;
-            //     var disabledDates = [];
-            //     for (var i = 0; i < times; /* Do not increase index */) {
-            //         var year = moment().year();
-            //         var month = 0;
-            //         var day = parseInt(Math.random() * 364 + 1);
-            //         var date = moment().year(year).month(month).date(day).format('YYYY-MM-DD');
-            //         if ($.inArray(date, disabledDates) === -1) {
-            //             disabledDates.push(date);
-            //             i++;
-            //         }
-            //     }
-
-            //     disabledDates.sort();
-
-            //     var $dates = $('.disabled-dates-calendar').siblings('.guide').find('.guide-dates');
-            //     for (var idx in disabledDates) {
-            //         $dates.append('<span>' + disabledDates[idx] + '</span>');
-            //     }
-
-            //     $('.disabled-dates-calendar').pignoseCalendar({
-            //         select: onSelectHandler,
-            //         disabledDates: disabledDates
-            //     });
-            // }());
-
-
-            // // Disabled Range Calendar.
-            // var minDate = moment().set('dates', Math.min(moment().day(), 2 + 1)).format('YYYY-MM-DD');
-            // var maxDate = moment().set('dates', Math.max(moment().day(), 24 + 1)).format('YYYY-MM-DD');
-            // $('.disabled-range-calendar').pignoseCalendar({
-            //     select: onSelectHandler,
-            //     minDate: minDate,
-            //     maxDate: maxDate
-            // });
-
-            // // Disabled Ranges Calendar.
-            // $('.disabled-ranges-calendar').pignoseCalendar({
-            //     select: onSelectHandler,
-            //     disabledRanges: [
-            //         ['2000-10-05', '2017-10-29'],
-            //     ]
-            // });
-
         });
-//]]>
-
     </script>
     <title>Dates & Times</title>
 </head>
@@ -211,54 +125,22 @@
 <body>
     <script src="//cdnjs.cloudflare.com/ajax/libs/timepicker/1.3.5/jquery.timepicker.min.js"></script>
     <% include partials/_header %>
-
         <center>
             <span>
-                <h3>BECOME A POODLR AND PLAN YOUR EVENT</h3>
+                <h3>PLAN YOUR EVENT</h3>
             </span>
         </center>
-
-
         <div id="toggle Center" class="article">
             <div class="toggle-calendar"></div>
-
-            <!-- <div id="toggle" class="article"></div> -->
-            <!-- <div id="wrapper">
-  <div id="toggle Center" class="article">
-  <div class="toggle-calendar"></div>
-</div> -->
-
-
             <section class="datesPicked">
                 <form class='form' method='POST' action='/events/:id/dates' name="testy">
-                    <div class="active-dates" name="testyy">
-                    </div>
+                    <div class="active-dates" name="testyy"></div>
                     <p>
-                        <button class='btn btn-danger' type='submit'>Confirm those Poodle times!</button>
+                        <button class='btn btn-danger' type='submit'>Confirm Your Times!</button>
                     </p>
                 </form>
-                <!-- 
-<form action="/:id/dates" method="POST">
-</form> -->
             </section>
-
-
-
-            <!-- ///////////////////// -->
-
-
-
-
-
-
-
-            <!-- ////////////////// -->
-
-
-
         </div>
-
-
 </body>
 
 </html>
