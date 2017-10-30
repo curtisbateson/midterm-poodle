@@ -12,15 +12,27 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
   <script src="/scripts/app.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
+  <!-- PRETTY THINGS -->
+  <link href="https://fonts.googleapis.com/css?family=Vollkorn" rel="stylesheet">
+  <link rel="stylesheet" type="text/css" href="/styles/tryStyles.css" />
+  <link rel="stylesheet" href="/styles/skeleton.css">
+  <link rel="stylesheet" href="/styles/normalize.css">
 </head>
+
 <body>
   <% include partials/_header %>
-  <container class="container">
-    <content class="row justify-content-center">
-      <h3>Time to Poodle!</h3>
+  <div class="container">  
+  <center><span><h3 class="h3d"><strong>Time to <span style="color: #FF4B9B; font-family: vollkorn;">Poodle</span>!</h3></strong></span></center>
+    <p><center><h2 class="h2e">Share your event with friends:<br />
+      <span style="color: #FF4B9B; font-family: vollkorn;"> http://localhost:8080/events/<%= event.long_identifier %></span></h2></p></center></p>
+    <p><h4 class="h4n"><%= `${event.title} by ${organizer.name} - ${organizer.email}` %></h3></p>
     </content>
+  </div>
+    <container class="container">
+        <content class="row justify-content-center">
     <content class="row justify-content-center">
-      <h3><%= `${event.title} by ${organizer.name} - ${organizer.email}` %></h3>
+
+
     </content>
     <content class="row justify-content-center">
       <p><%= event.description %></p>
@@ -93,5 +105,6 @@
     </form>
     </p>
   </container>
+</script>
 </body>
 </html>
