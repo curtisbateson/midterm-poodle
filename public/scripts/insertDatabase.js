@@ -16,7 +16,6 @@ module.exports = function insertDatabase(session, knex) {
       
       knex.insert([sessionEvent]).into("events").returning("id")
       .then(id => {
-        console.log("testing "+id);
         let datesArr = []
         for (let date in session.dates) {
          knex('schedule_options').insert({
@@ -26,11 +25,9 @@ module.exports = function insertDatabase(session, knex) {
           })
           .returning('id')
           .then((id) => {
-              console.log(id);
           });
         } 
         return Promise.all(datesArr);
-        console.log(datesArr)
       })
   })
 };

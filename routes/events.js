@@ -9,10 +9,6 @@ const generateId      = require('../public/scripts/generateID.js')
 const insertDatabase  = require('../public/scripts/insertDatabase.js')
 const addAttendee     = require('../public/scripts/addAttendee.js')
 
-
-
-
-
 var testEvent = {
     event: {
         description: "This is my Poodle. There are many like it, but this one is mine. Four score and seventeen Poodles ago I have a dream that Poodles and Poodles can live together in harmony. Rule #1: Don't talk about Poodle Club. Rule #2: Don't talk about Poodle Club.",
@@ -43,14 +39,18 @@ module.exports = (knex) => {
 
   router.post("/", (req, res) => {
     let longId = generateId();
+<<<<<<< HEAD
     let title = req.body.title;
     let description = req.body.description;
     console.log(title);
+=======
+>>>>>>> 4fff11ffb2f9ab40bb57afbd9cdc0492d91119ce
     req.session.event = {
       description: req.body.description,
       title: req.body.title,
       longId: longId
     }
+<<<<<<< HEAD
     console.log("before if!")
     if (!title || !description) {
       console.log("no title")
@@ -61,6 +61,11 @@ module.exports = (knex) => {
       res.redirect("/events/" + longId + "/dates") 
     }   
  });                    
+=======
+  
+     res.redirect("/events/" + longId + "/dates")        
+  })                    
+>>>>>>> 4fff11ffb2f9ab40bb57afbd9cdc0492d91119ce
         
   router.get("/:id/dates", (req, res) => {
     res.render("dates")  
