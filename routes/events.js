@@ -71,7 +71,6 @@ module.exports = (knex) => {
   router.get("/:id", (req, res) => {
     let id = req.params.id
     req.session.buttonSelections = [];
-    
 
     getEvent(id, knex).then(snowball => {
 
