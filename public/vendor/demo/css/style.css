@@ -26,6 +26,10 @@ pre, code, code span {
  position: float left;
 }
 
+.active-dates {
+	padding: 2rem
+}
+
 .clearfix {
 	overflow: auto;
 }
