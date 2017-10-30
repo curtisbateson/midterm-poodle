@@ -31,16 +31,20 @@ module.exports = (knex) => {
   
   })
   
-  router.post("/:id/dates", (req, res) => {  
-    let id = req.session.event.longId
+  router.post("/:id/dates", (req, res) => { 
+    req.session.schedule_options = [];
+    for(var i = 0; i < req.body.dates.length; i++){
+      req.session.schedule_options.push({
+        date: req.body.dates[i].slice(0, 15),
+        time: req.body.times[i]
+      })
+    }
+  let id = req.session.event.longId
     res.redirect("/events/" + id + "/organizer")
   })
   
   router.get("/:id/organizer", (req, res) => {
-    
     let id = req.session.event.longId
-   
-    
     res.render("organizer", {id})
   })
 
@@ -50,15 +54,16 @@ module.exports = (knex) => {
       email: req.body.email
     }
     let id = req.session.event.longId
-    insertDatabase(req.session, knex)
+    insertDatabase(req.session, knex).then(data => {
+      res.redirect("/events/" + id)
+    })
     
-    res.redirect("/events/" + id)
 
   })
 
   router.get("/:id", (req, res) => {
-    getEvent("g37uY2fw5E", knex).then(data => { 
-      console.log(data)
+    let id = req.session.event.longId
+    getEvent(id, knex).then(data => { 
       res.render("event", data)})
   })
 

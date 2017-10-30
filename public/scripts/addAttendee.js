@@ -16,7 +16,6 @@ module.exports = function addAttendee(attendee, knex) {
       })
       .returning('schedule_option_id')
       .then(scheduleOptionId => {
-      console.log(scheduleOptionId)
       })
     }
   }) 
