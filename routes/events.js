@@ -9,34 +9,19 @@ const generateId      = require('../public/scripts/generateID.js')
 const insertDatabase  = require('../public/scripts/insertDatabase.js')
 const addAttendee     = require('../public/scripts/addAttendee.js')
 
-var testEvent = {
-    event: {
-        description: "This is my Poodle. There are many like it, but this one is mine. Four score and seventeen Poodles ago I have a dream that Poodles and Poodles can live together in harmony. Rule #1: Don't talk about Poodle Club. Rule #2: Don't talk about Poodle Club.",
-        title: "Poodle Event Title",
-        longId: "jn3iun3r"
-    },
-    options: {
-        option1 : {
-            date: "2017-11-01",
-            time: "6:00"
-        },
-        option2 : {
-            date: "2017-11-02",
-            time: "6:00"
-        }
-    },
-    organizer: {
-        name: "Poodler",
-        email: "poodler@example.com"
-    }
-}
-
 module.exports = (knex) => {
 
   router.get("/", (req, res) => {
     res.render("name")
   });
+  
 
+  router.post("/option", (req, res) => {
+    req.session.buttonSelections.push(req.body.button)
+    res.sendStatus(200);
+
+  })
+ 
   router.post("/", (req, res) => {
     let longId = generateId();
     req.session.event = {
@@ -44,24 +29,29 @@ module.exports = (knex) => {
       title: req.body.title,
       longId: longId
     }
-  
-     res.redirect("/events/" + longId + "/dates")        
+    res.redirect("/events/" + longId + "/dates")        
   })                    
-        
+  
   router.get("/:id/dates", (req, res) => {
     res.render("dates")  
- 
-    
+    let id = req.session.event.longId
+  
   })
   
-  router.post("/:id/dates", (req, res) => {  
-    res.redirect("/:id/organizer")
+  router.post("/:id/dates", (req, res) => { 
+    req.session.schedule_options = [];
+    for(var i = 0; i < req.body.dates.length; i++){
+      req.session.schedule_options.push({
+        date: req.body.dates[i].slice(0, 15),
+        time: req.body.times[i]
+      })
+    }
+  let id = req.session.event.longId
+    res.redirect("/events/" + id + "/organizer")
   })
-
+  
   router.get("/:id/organizer", (req, res) => {
     let id = req.session.event.longId
-   
-    
     res.render("organizer", {id})
   })
 
@@ -70,16 +60,39 @@ module.exports = (knex) => {
       name: req.body.name,
       email: req.body.email
     }
-    insertDatabase(req.session, knex)
-    res.redirect("/:id")
+    let id = req.session.event.longId
+    insertDatabase(req.session, knex).then(data => {
+      res.redirect("/events/" + id)
+    })
+    
 
   })
 
   router.get("/:id", (req, res) => {
+    let id = req.params.id
+    req.session.buttonSelections = [];
+    
+
+    getEvent(id, knex).then(snowball => {
+
+      req.session.current_event = snowball.event.id 
+      res.render("event", snowball)
+    })
   })
 
   router.post("/:id", (req, res) => {
+    let id = req.session.event.longId
+    var attendee = {
+      schedule_options: req.session.buttonSelections,
+      event_id: req.session.current_event,
+      email: req.body.email,
+      name: req.body.name
+    }
+    addAttendee(attendee, knex).then(data => {
+      res.redirect("/events/" + id)
+    })
   })
-
+  
+  
   return router;
 }
