@@ -1,9 +1,16 @@
 $(function(){
-    $("#thing").on("click", function() {
-        if(this.classList.contains("active")) {
-            this.classList.remove("active");
-        } else {
-            this.classList.add("active");
-        }
-    });
+    $(".new-user").on("click", function() {
+        const thisButton = $(this);
+        let optionPicked = "button="+ thisButton[0].dataset.option
+        console.log(optionPicked)
+        console.log(thisButton)
+        console.log("clicked")
+        $.ajax ({
+            method: "POST",
+            url: "/events/option",
+            data: optionPicked
+         }) .done(function(){
+            console.log("Great Job, Really Well Done - Karl, 2017")
+            })
+    })
 });

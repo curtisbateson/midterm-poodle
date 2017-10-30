@@ -39,7 +39,6 @@ module.exports = function getEvent(longId, knex) {
                     idArr.forEach(function(id){
                         promiseArr.push("knex.select().from('selected_options').where({ schedule_option_id:" + id + "})")
                     });
-                    console.log(promiseArr)
                    return Promise.all(promiseArr)
                         .then(data => {
                             var dataJson = JSON.parse(JSON.stringify(data))

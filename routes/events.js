@@ -15,6 +15,14 @@ module.exports = (knex) => {
     res.render("name")
   });
   
+
+  router.post("/option", (req, res) => {
+    console.log(req.body.button)
+    console.log('postoption');
+    res.sendStatus(200);
+
+  })
+ 
   router.post("/", (req, res) => {
     let longId = generateId();
     req.session.event = {
@@ -63,12 +71,23 @@ module.exports = (knex) => {
 
   router.get("/:id", (req, res) => {
     let id = req.session.event.longId
-    getEvent(id, knex).then(data => { 
-      res.render("event", data)})
+    req.session.buttonSelections = [];
+    
+
+    getEvent(id, knex).then(snowball => {
+      req.session.current_event = snowball.event.id 
+      res.render("event", snowball)})
   })
 
   router.post("/:id", (req, res) => {
-  })
+    req.session.attendee = {
+      event_id: req.session.current_event,
+      email: req.body.email,
+      name: req.body.name
+    }
 
+  })
+  
+  
   return router;
 }
