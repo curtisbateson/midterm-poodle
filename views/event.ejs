@@ -40,18 +40,19 @@
               <% for (var attendee in attendees) { %>
                 <tr>
                   <th>
-                    <p>Attendee Name/Email</p>
+                    <p><%= `${attendees[attendee].name}`%> <br/> <%= `${attendees[attendee].email}`%> </p>
                   </th>
                   <% for (var option in schedule_options) { %>
                     <% var active = false; %>
-                    <% for (var select in selected) { %>
-                      <% if (selected[select].attendee === attendees[attendee] && schedule_options[option].id === selected[select].option) { %>
+                    <% for (var select in selected_options) { %>
+                      <% if (selected_options[select].attendee_id === attendees[attendee].id && schedule_options[option].id === selected_options[select].schedule_option_id) { %>
                         <% active = true; %>
                       <% } %>
                     <% } %>
+                    <% console.log() %>
                     <% if (active) { %>
                       <td>
-                        <button type="button" class="btn btn-danger active" data-toggle="button" aria-pressed="false" autocomplete="off">
+                        <button type="button" class="btn btn-danger active" data-toggle="button" aria-pressed="true" autocomplete="off">
                           Poodle
                         </button>
                       </td>

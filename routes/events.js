@@ -17,7 +17,6 @@ module.exports = (knex) => {
   
 
   router.post("/option", (req, res) => {
-    console.log("dat button doe", req.body.button);
     req.session.buttonSelections.push(req.body.button)
     res.sendStatus(200);
 
@@ -70,7 +69,7 @@ module.exports = (knex) => {
   })
 
   router.get("/:id", (req, res) => {
-    let id = req.session.event.longId
+    let id = req.params.id
     req.session.buttonSelections = [];
     
 

@@ -11,7 +11,8 @@ module.exports = function getEvent(longId, knex) {
        return knex.select().from('attendees').where({event_id: eventId})
             .then(data => {
                 var dataJson = JSON.parse(JSON.stringify(data))
-                snowball.attendees = dataJson[0]
+                console.log("DATA JSON", dataJson)
+                snowball.attendees = dataJson
                 return snowball.event.organizer_id
             })
         .then(organizerId => {
@@ -39,7 +40,7 @@ module.exports = function getEvent(longId, knex) {
                     
                     .then(data => {
                         var dataJson = JSON.parse(JSON.stringify(data))
-                        snowball.selected_options = dataJson[0]
+                        snowball.selected_options = dataJson
                         console.log("HEEEEEEEEEEY Brother", snowball)
                             return snowball
                         })
