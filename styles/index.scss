@@ -10,21 +10,21 @@ $secondary-font: 'Roboto Condensed', sans-serif;
 
     h1 {
         color: white;
-        font: 55px "Lobster", cursive;
+        font: 75px "Lobster", cursive;
         left: 10px;
         position: relative;
-        top: 20px;
+        top: 5px;
     }
 
     img {
         border-radius: 10px;
         float: left;
-        height: 100px;
+        height: 140px;
+        width: 100px;
         margin: 10px;
         top: -100px;
     }
 }
-
 
 
 content {
@@ -67,4 +67,9 @@ container {
             height: 100px;
         }
     }
+}
+
+// HEADER2
+.datesPicked {
+ margin-top: auto;   
 }
