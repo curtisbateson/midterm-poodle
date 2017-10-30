@@ -1,7 +1,7 @@
 $(function(){
     $(".new-user").on("click", function() {
         const thisButton = $(this);
-        let optionPicked = "button="+ thisButton[0].dataset.option
+        let optionPicked = "button="+ Number(thisButton[0].dataset.option)
         console.log(optionPicked)
         console.log(thisButton)
         console.log("clicked")

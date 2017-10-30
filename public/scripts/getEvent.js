@@ -35,14 +35,12 @@ module.exports = function getEvent(longId, knex) {
                         
                     })
                 .then(idArr => {
-                    let promiseArr = []
-                    idArr.forEach(function(id){
-                        promiseArr.push("knex.select().from('selected_options').where({ schedule_option_id:" + id + "})")
-                    });
-                   return Promise.all(promiseArr)
-                        .then(data => {
-                            var dataJson = JSON.parse(JSON.stringify(data))
-                            snowball.selected_options = dataJson[0]
+                    return knex.select().from('selected_options').whereIn("schedule_option_id", idArr)
+                    
+                    .then(data => {
+                        var dataJson = JSON.parse(JSON.stringify(data))
+                        snowball.selected_options = dataJson[0]
+                        console.log("HEEEEEEEEEEY Brother", snowball)
                             return snowball
                         })
                 
