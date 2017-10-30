@@ -25,18 +25,46 @@
     <content class="row justify-content-center">
       <p><%= event.description %></p>
     </content>
-    <content id="options" class="container">
+    <content id="schedule_options" class="container">
       <div class="row justify-content-center">
         <table class="table">
             <thead>
               <tr>
                 <th scope="col"></th>
-                <% for (var option in options) { %>
-                  <th scope="col"><%= `${options[option].date} / ${options[option].time}` %></th>
+                <% for (var option in schedule_options) { %>
+                  <th scope="col"><%= `${schedule_options[option].date} / ${schedule_options[option].time}` %></th>
                 <% } %>
               </tr>
             </thead>
             <tbody>
+              <% for (var attendee in attendees) { %>
+                <tr>
+                  <th>
+                    <p>Attendee Name/Email</p>
+                  </th>
+                  <% for (var option in schedule_options) { %>
+                    <% var active = false; %>
+                    <% for (var select in selected) { %>
+                      <% if (selected[select].attendee === attendees[attendee] && schedule_options[option].id === selected[select].option) { %>
+                        <% active = true; %>
+                      <% } %>
+                    <% } %>
+                    <% if (active) { %>
+                      <td>
+                        <button type="button" class="btn btn-danger active" data-toggle="button" aria-pressed="false" autocomplete="off">
+                          Poodle
+                        </button>
+                      </td>
+                    <% } else { %>
+                      <td>
+                        <button type="button" class="btn btn-danger" data-toggle="button" aria-pressed="false" autocomplete="off">
+                          Poodle
+                        </button>
+                      </td>
+                    <% } %>
+                  <% } %>
+                </tr>
+              <% } %>
               <tr>
                 <th scope="row">
                     <form class='form' method='POST' action='/events/:id'>
@@ -47,7 +75,7 @@
                         <input class='form-control' type='email' name='email' placeholder="Email"/>
                       </p>
                 </th>
-                  <% for (var option in options) { %>
+                  <% for (var option in schedule_options) { %>
                     <td>
                       <button type="button" class="btn btn-danger" data-toggle="button" aria-pressed="false" autocomplete="off">
                         Poodle
