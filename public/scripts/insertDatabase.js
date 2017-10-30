@@ -3,7 +3,7 @@ module.exports = function insertDatabase(session, knex) {
     name:   session.organizer.name, 
     email:  session.organizer.email 
   }
-  knex.insert([sessionOrganizer]).into("organizers").returning("id")
+  return knex.insert([sessionOrganizer]).into("organizers").returning("id")
   .then(id => {
     return id[0]
   })
@@ -14,20 +14,21 @@ module.exports = function insertDatabase(session, knex) {
       title:            session.event.title, 
       description:      session.event.description }
       
-      knex.insert([sessionEvent]).into("events").returning("id")
+      return knex.insert([sessionEvent]).into("events").returning("id")
       .then(id => {
-        let datesArr = []
-        for (let date in session.dates) {
+        // let datesArr = []
+        for (let option of session.schedule_options) {
          knex('schedule_options').insert({
             event_id: Number(id),
-            date: session.dates[date].day,
-            time: session.dates[date].time
+            date: option.date,
+            time: option.time
           })
           .returning('id')
           .then((id) => {
+            return id
           });
         } 
-        return Promise.all(datesArr);
+        // return Promise.all(datesArr);
       })
   })
 };
