@@ -24,8 +24,8 @@
   <div class="container">  
   <center><span><h3 class="h3d"><strong>Time to <span style="color: #FF4B9B; font-family: vollkorn;">Poodle</span>!</h3></strong></span></center>
     <p><center><h2 class="h2e">Share your event with friends:<br />
-      <span style="color: #FF4B9B; font-family: vollkorn;"> http://localhost:8080/events/<%= event.long_identifier %></span></h2></p></center></p>
-    <p><h4 class="h4n"><%= `${event.title} by ${organizer.name} - ${organizer.email}` %></h3></p>
+      <span style="color: #FF4B9B; font-family: vollkorn;"> http://pood.le/events/<%= event.long_identifier %></span></h2></p></center></p>
+    <p><center><h4 class="h4n"><%= `${event.title} by ${organizer.name} - ${organizer.email}` %></h4></center></p>
     </content>
   </div>
     <container class="container">
@@ -100,11 +100,13 @@
           </table>
       </div>
     </content>
-    <p class="row justify-content-center">
-      <button class='btn btn-danger' type='submit'>Confirm those Poodle selections!</button>
-    </form>
-    </p>
   </container>
+
+      <div class="container"> 
+    <center><p><button class="align-middle changeB" type="submit">Hey POODLR, confirm your selections!</button></p></center>
+    </form>
+    </div>
+
 </script>
 </body>
 </html>
